@@ -20,11 +20,12 @@ class AdminSiteTests(TestCase):
 
     def test_driver_license_number_listed(self):
         """
-        Test that driver's license_number is on list_display on driver admin page.
+        Test that driver's license_number is on
+        list_display on driver admin page.
         :return:
         """
         url = reverse("admin:taxi_driver_changelist")
-        res  = self.client.get(url)
+        res = self.client.get(url)
         self.assertContains(res, self.driver.license_number)
 
     def test_driver_detail_license_number_listed(self):
@@ -33,12 +34,13 @@ class AdminSiteTests(TestCase):
         :return:
         """
         url = reverse("admin:taxi_driver_change", args=[self.driver.id])
-        res  = self.client.get(url)
+        res = self.client.get(url)
         self.assertContains(res, self.driver.license_number)
 
     def test_driver_create_page_has_fields(self):
         """
-        Test that the add driver admin page contains first_name, last_name, and license_number fields.
+        Test that the add driver admin page contains first_name,
+        last_name, and license_number fields.
         """
         url = reverse("admin:taxi_driver_add")
         res = self.client.get(url)
@@ -57,8 +59,13 @@ class CarAdminTests(TestCase):
         )
         self.client.login(username="admin", password="adminpass")
 
-        self.manufacturer = Manufacturer.objects.create(name="TestManufacturer")
-        self.car = Car.objects.create(model="TestModel", manufacturer=self.manufacturer)
+        self.manufacturer = Manufacturer.objects.create(
+            name="TestManufacturer"
+        )
+        self.car = Car.objects.create(
+            model="TestModel",
+            manufacturer=self.manufacturer
+        )
 
     def test_car_admin_search_box_exists(self):
         url = reverse("admin:taxi_car_changelist")
